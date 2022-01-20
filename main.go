@@ -3,23 +3,25 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-  "os"
-  "strconv"
+  "flag"
 	"pairwise/PPmaker"
 	// "pairwise/fracmaker"
 	//	"pairwise/texmaker"
 )
 
 func main() {
-  order, _ := strconv.Atoi(os.Args[1])
-
-	shuffle := true // permutes each card randomly,use with fractionmaker TODO: fix the shuffle
-	format := false// formats with commas for use with python/etc
+  order := flag.Int("order", 3, "Order of the projective plane")
+  format := flag.Bool("format", false, "Format with commas for python/etc")
+  shuffle := flag.Bool("shuffle", false, "Permutes cards randomly, use with fracmaker")
+  show := flag.Bool("show", false, "Displays to stdout")
+  // TODO: fix shuffle
+  flag.Parse()
 
 	// Creates the projective plane
-	p := PPmaker.MakePP(order, shuffle)
-  display(p, format)
-
+	p := PPmaker.MakePP(*order, *shuffle)
+  if *show {
+    display(p, *format)
+  }
 }
 
 // puts commas between values and arrays for using in python/etc
