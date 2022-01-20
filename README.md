@@ -6,7 +6,19 @@ Using finite projective plane to generate card (maybe video) games.
 
 ## Running
 
-Run with `go run .` Right now uses Go 1.17 but 1.18 just came out, I'm just
+`go build main.go`
+
+Usage of ./main:
+  -format (default false)
+      Format with commas for python/etc
+  -order int (default 3)
+      Order of the projective plane (default 3)
+  -show (default false)
+      Displays to stdout
+  -shuffle (default false)
+      Permutes cards randomly, use with fracmaker
+
+Right now uses Go 1.17 but 1.18 just came out, I'm just
 learning Go really, so I don't think there should be conflicts unless Go
 insists you use 1.17 and you only have 1.18, idk. 
 
