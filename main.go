@@ -3,13 +3,16 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+  "os"
+  "strconv"
 	"pairwise/PPmaker"
 	// "pairwise/fracmaker"
 	//	"pairwise/texmaker"
 )
 
 func main() {
-	order := 3      // needs to be powers of primes
+  order, _ := strconv.Atoi(os.Args[1])
+
 	shuffle := true // permutes each card randomly,use with fractionmaker TODO: fix the shuffle
 	format := false// formats with commas for use with python/etc
 
