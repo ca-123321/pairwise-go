@@ -5,6 +5,7 @@ import (
 	"fmt"
   "flag"
 	"pairwise/PPmaker"
+  "pairwise/hexmaker"
 	// "pairwise/fracmaker"
 	//	"pairwise/texmaker"
 )
@@ -22,6 +23,7 @@ func main() {
   if *show {
     display(p, *format)
   }
+  hexmaker.MakeHexagon()
 }
 
 // puts commas between values and arrays for using in python/etc
