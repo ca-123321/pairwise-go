@@ -53,4 +53,4 @@ equivalent fractions on each. Lucky gift from the universe, that there are 31
 - generalize geometries and alignment
 - figure out how to integrate a solver so as to not leave Go, or have the
   solver (python) write a file and have pairwise read the file
-
+- Check for deck/ subdirectory before trying to write card images to it
