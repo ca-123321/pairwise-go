@@ -4,20 +4,29 @@
 
 Using finite projective plane to generate card (maybe video) games. 
 
+Currently uses package hexmaker to create hextiles based on generated PPs. 
+
 ## Running
 
-`go build main.go`
+`go run main.go -flag=value`
+
+For instance, `go run main.go -order=7 -show=true` to display the projective
+plane order 7. 
 
 ```
 Usage of ./main:
+  -color (default true)
+      Print in color, or if false, black and white with stroked hexagon outline
   -format (default false)
      Format with commas for python/etc
-  -order int (default 3)
+  -order int (default 5)
       Order of the projective plane (default 3)
   -show (default false)
       Displays to stdout
   -shuffle (default false)
       Permutes cards randomly, use with fracmaker
+  -solver (default false) 
+      currently unimplemented, see pairwise_solver
 ```
 
 Right now uses Go 1.17 but 1.18 just came out, I'm just
@@ -30,9 +39,7 @@ uncomment and try to run the texmaker portion.
 
 ## Notes
 
-There are flags in `main.go`, for printing and formatting. The formatting is
-for outputting in a form easy to paste into the (currently hardcoded)
-`pairwise_solver` repo (TODO: link)
+https://www.youtube.com/watch?v=V_wQ7ByCSgw
 
 ## Fracmaker 
 
@@ -42,9 +49,8 @@ equivalent fractions on each. Lucky gift from the universe, that there are 31
 
 # Next
 
-- decide on TeX or SVG
-- implement one, according to some printing process, export pdf
-- art
-- write a solver in Go instead of using pairwise_solver (TODO: link)
-
+- fix Fracmaker
+- generalize geometries and alignment
+- figure out how to integrate a solver so as to not leave Go, or have the
+  solver (python) write a file and have pairwise read the file
 

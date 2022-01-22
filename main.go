@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-  order := flag.Int("order", 3, "Order of the projective plane")
+  order := flag.Int("order", 5, "Order of the projective plane")
   format := flag.Bool("format", false, "Format with commas for python/etc")
   shuffle := flag.Bool("shuffle", false, "Permutes cards randomly, use with fracmaker")
   show := flag.Bool("show", false, "Displays to stdout")
