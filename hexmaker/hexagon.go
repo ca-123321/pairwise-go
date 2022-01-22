@@ -6,9 +6,10 @@ import (
   "golang.org/x/image/font/gofont/goregular"
   "math"
   "strconv"
+  "fmt"
 )
 
-func MakeHexagon() {
+func MakeHexagon(PP [][]int) {
   const S = 1024
   dc := gg.NewContext(S, S)
   radius := 300.0
@@ -29,6 +30,7 @@ func MakeHexagon() {
   dc.Fill()
 
   // Draw circles and text
+for j := 0; j < 31; j++ {
   for i := 0; i < 6; i++ {
     dc.Push()
     dc.SetHexColor("e42828")
@@ -40,10 +42,12 @@ func MakeHexagon() {
     dc.Fill()
     dc.SetRGB(1, 1, 1)
     dc.RotateAbout(gg.Radians(270), x, y)
-    text := strconv.Itoa(i+1)
+    text := strconv.Itoa(PP[j][i])
     dc.DrawStringAnchored(text, x, y, 0.5, 0.5)
     dc.Pop()
   }
-  dc.SavePNG("out.png")
+  filename := fmt.Sprintf("deck/hex%d.png", j+1)
+  dc.SavePNG(filename)
+}
 }
 

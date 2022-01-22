@@ -23,7 +23,8 @@ func main() {
   if *show {
     display(p, *format)
   }
-  hexmaker.MakeHexagon()
+  // TODO: Integrate solver at this point to get one elem/column
+  hexmaker.MakeHexagon(p)
 }
 
 // puts commas between values and arrays for using in python/etc
