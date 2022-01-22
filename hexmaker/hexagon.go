@@ -33,6 +33,14 @@ func MakeHexagon(PP [][]int) {
 for j := 0; j < 31; j++ {
   for i := 0; i < 6; i++ {
     dc.Push()
+    // Card number
+    dc.SetHexColor("a61313")
+    dc.DrawCircle(S/2, S/2, 60)
+    dc.Fill()
+    cardno := strconv.Itoa(j+1)
+    dc.SetRGB(1, 1, 1)
+    dc.DrawStringAnchored(cardno, S/2, S/2, 0.5, 0.5)
+    // Connection points
     dc.SetHexColor("e42828")
     angle := gg.Radians(float64(i*60 - 30)) // -30 for edge-alignment
     x := S/2 + 200*math.Cos(angle)
