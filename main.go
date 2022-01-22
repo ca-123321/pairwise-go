@@ -15,6 +15,8 @@ func main() {
   format := flag.Bool("format", false, "Format with commas for python/etc")
   shuffle := flag.Bool("shuffle", false, "Permutes cards randomly, use with fracmaker")
   show := flag.Bool("show", false, "Displays to stdout")
+  color := flag.Bool("color", true, "Render in color")
+
   // TODO: fix shuffle
   flag.Parse()
 
@@ -24,7 +26,7 @@ func main() {
     display(p, *format)
   }
   // TODO: Integrate solver at this point to get one elem/column
-  hexmaker.MakeHexagon(p)
+  hexmaker.MakeHexagon(p, *color)
 }
 
 // puts commas between values and arrays for using in python/etc
