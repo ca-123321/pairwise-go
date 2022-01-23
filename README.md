@@ -14,7 +14,7 @@ For instance, `go run main.go -order=7 -show=true` to display the projective
 plane order 7. 
 
 ```
-Usage of ./main:
+Usage:
   -color (default true)
       Print in color, or if false, black and white with stroked hexagon outline
   -format (default false)
@@ -53,4 +53,7 @@ equivalent fractions on each. Lucky gift from the universe, that there are 31
 - generalize geometries and alignment
 - figure out how to integrate a solver so as to not leave Go, or have the
   solver (python) write a file and have pairwise read the file
-- Check for deck/ subdirectory before trying to write card images to it
+- Check for deck/ subdirectory before trying to write card images to it, give
+  error or attempt to create the directory
+- Add a sheet option for tiling the hexagons for easy printing and cutting
+  prototypes
