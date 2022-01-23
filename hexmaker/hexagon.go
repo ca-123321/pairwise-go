@@ -7,6 +7,9 @@ import (
   "math"
   "strconv"
   "fmt"
+  "os"
+  "log"
+  "errors"
 )
 
 func MakeHexagon(PP [][]int, color bool) {
@@ -59,7 +62,6 @@ for j := 0; j < 31; j++ {
   for i := 0; i < 6; i++ {
     dc.Push()
 
-    
     // Connection points
     angle := gg.Radians(float64(i*60 - 30)) // -30 for edge-alignment
     x := S/2 + 200*math.Cos(angle)
@@ -83,6 +85,13 @@ for j := 0; j < 31; j++ {
       dc.DrawStringAnchored(text, x, y, 0.5, 0.5)
     }
     dc.Pop()
+  }
+  // Write the current card
+  if _, err := os.Stat("deck"); errors.Is(err, os.ErrNotExist) {
+    err := os.Mkdir("deck", os.ModePerm)
+    if err != nil {
+      log.Println(err)
+    }
   }
   filename := fmt.Sprintf("deck/hex%d.png", j+1)
   dc.SavePNG(filename)
