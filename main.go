@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+  "io/ioutil"
 	"fmt"
   "flag"
 	"pairwise/PPmaker"
@@ -18,10 +19,13 @@ func main() {
   format := flag.Bool("format", false, "Format with commas for python/etc (default false)")
   shuffle := flag.Bool("shuffle", false, "Permutes cards randomly, use with fracmaker (default false)")
   show := flag.Bool("show", false, "Displays to stdout (default false)")
-  color := flag.Bool("color", true, "Render in color")
+  color := flag.Bool("color", false, "Render in color")
   solver := flag.Bool("solver", false, "Use the solver to ensure every element is in exactly one column")
-  hexDeck := flag.Bool("hexdeck", true, "Send the PP to hexmaker and make a set of images")
-
+  hexDeck := flag.Bool("hexdeck", false, "Send the PP to hexmaker and make a set of images")
+  makejson := flag.Bool("json", false, "Marshal the PP and write it to a json file")
+  // TODO: Various checks for incompatible flags
+  // TODO: Maybe move all the flags and checks out of main or something cleaner
+  // a struct or something
   // TODO: fix shuffle
   flag.Parse()
 
@@ -30,6 +34,14 @@ func main() {
   }
 	// Creates the projective plane
 	p := PPmaker.MakePP(*order, *shuffle)
+
+  if *makejson {
+    file, _ := json.Marshal(p)
+    _ = ioutil.WriteFile("solver/PP.json", file, 0644) 
+    // TODO: dynamic filename for order, separate dir? maybe not for general
+    // solver use
+  }
+
   if *show {
     display(p, *format)
   }

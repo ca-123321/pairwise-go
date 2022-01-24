@@ -8,28 +8,35 @@ Currently uses package hexmaker to create hextiles based on generated PPs.
 
 ## Running
 
-`go run main.go -flag=value`
+`go run main.go -flag=value` All bool flags are false right now, default order
+is 5.
 
 For instance, `go run main.go -order=7 -show=true` to display the projective
 plane order 7. 
+
+`go run main.go -order=3 -json=true` then run the generic `solver.py` from
+within its directory, to get an order 3 PP with array elements permuted such
+that each element appears in each column exactly once
 
 `go run main.go -help` for options.
 
 ```
 Usage:
-  -color (default true)
-    Print in color, or if false, black and white with stroked hexagon outline
-  -format (default false)
-    Format with commas for python/etc
+  -color
+    (true) Print in color, (false) black and white with stroked hexagon outline
+  -format
+    (true) Format with commas for python/etc
   -hexdeck
-    Send the PP to hexmaker and make a set of images (default true)
-  -order int (default 5)
-      Order of the projective plane (default 3)
-  -show (default false)
-      Displays to stdout
-  -shuffle (default false)
-      Permutes cards randomly, use with fracmaker
-  -solver (default false) 
+    (true) Send the PP to hexmaker and make a set of images
+  -json
+    (true) Marshal the PP and write it to a json file
+  -order 
+    (int) Order of the projective plane (default 5)
+  -show
+    (true) Displays to stdout
+  -shuffle 
+    (true) Permutes cards randomly, use with fracmaker
+  -solver 
       currently unimplemented, see pairwise_solver
 ```
 

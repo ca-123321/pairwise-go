@@ -2,8 +2,8 @@
 
 ## What it does
 
-This takes in a (currently hard-coded) set of arrays, and permutes them such
-that every element appears in a column exactly once.
+This takes in a hard-coded set of arrays (`solver_order3.py` etc) or uses
+PP.json if created by `../main.go`, and permutes them such that every element appears in a column exactly once.
 
 ## Notes
 
@@ -22,6 +22,11 @@ seems open.
 - - `pairwise` should then pick up and do things to it (send it to `hexmaker`
     or whatever future card/tile creation
 - - Probably all organized by a shell script/TUI/GUI
+
+(TODO: Update this as json marshaling works) 
+
+- In the meantime of having to use a python solver, marshal the solver output
+  to feed back into pairwise
 
 ## Credits
 

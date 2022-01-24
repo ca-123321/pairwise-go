@@ -61,7 +61,7 @@ def main():
     # Solve the model
     solver = cp_model.CpSolver()
     solution_printer = CellsSolutionPrinter(cells)
-    solver.parameters.enumerate_all_solutions = True
+    # solver.parameters.enumerate_all_solutions = True
     solver.Solve(model, solution_printer)
 
     # Statistics
