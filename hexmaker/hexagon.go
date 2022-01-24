@@ -7,12 +7,15 @@ import (
   "math"
   "strconv"
   "fmt"
+  "os"
+  "log"
+  "errors"
 )
 
 func MakeHexagon(PP [][]int, color bool) {
-  const S = 1024
+  const S = 200
   dc := gg.NewContext(S, S)
-  radius := 300.0
+  radius := float64(S/2)
 
   // Set up font
   font, err := truetype.Parse(goregular.TTF)
@@ -20,7 +23,7 @@ func MakeHexagon(PP [][]int, color bool) {
     panic("")
   }
   face := truetype.NewFace(font, &truetype.Options{
-    Size: 40,
+    Size: 12,
   })
   dc.SetFontFace(face)
 
@@ -44,13 +47,13 @@ for j := 0; j < 31; j++ {
     cardno := strconv.Itoa(j+1)
     if color {
       dc.SetHexColor("a61313")
-      dc.DrawCircle(S/2, S/2, 60)
+      dc.DrawCircle(S/2, S/2, S/10)
       dc.Fill()
       dc.SetRGB(1, 1, 1)
       dc.DrawStringAnchored(cardno, S/2, S/2, 0.5, 0.5)
     } else {
       dc.SetRGB(1,1,1)
-      dc.DrawCircle(S/2, S/2, 60)
+      dc.DrawCircle(S/2, S/2, S/10)
       dc.Fill()
       dc.SetRGB(0,0,0)
       dc.DrawStringAnchored(cardno, S/2, S/2, 0.5, 0.5)
@@ -59,15 +62,14 @@ for j := 0; j < 31; j++ {
   for i := 0; i < 6; i++ {
     dc.Push()
 
-    
     // Connection points
     angle := gg.Radians(float64(i*60 - 30)) // -30 for edge-alignment
-    x := S/2 + 200*math.Cos(angle)
-    y := S/2 + 200*math.Sin(angle)
+    x := S/2 + 0.65*radius*math.Cos(angle) 
+    y := S/2 + 0.65*radius*math.Sin(angle)
     dc.RotateAbout(angle, x, y)
     if color {
       dc.SetHexColor("e42828")
-      dc.DrawCircle(x, y, 50)
+      dc.DrawCircle(x, y, S/10)
       dc.Fill()
       dc.SetRGB(1, 1, 1)
       dc.RotateAbout(gg.Radians(270), x, y)
@@ -75,7 +77,7 @@ for j := 0; j < 31; j++ {
       dc.DrawStringAnchored(text, x, y, 0.5, 0.5)
     } else {
       dc.SetRGB(1,1,1)
-      dc.DrawCircle(x, y, 50)
+      dc.DrawCircle(x, y, S/10)
       dc.Fill()
       dc.SetRGB(0,0,0)
       dc.RotateAbout(gg.Radians(270), x, y)
@@ -83,6 +85,13 @@ for j := 0; j < 31; j++ {
       dc.DrawStringAnchored(text, x, y, 0.5, 0.5)
     }
     dc.Pop()
+  }
+  // Write the current card
+  if _, err := os.Stat("deck"); errors.Is(err, os.ErrNotExist) {
+    err := os.Mkdir("deck", os.ModePerm)
+    if err != nil {
+      log.Println(err)
+    }
   }
   filename := fmt.Sprintf("deck/hex%d.png", j+1)
   dc.SavePNG(filename)
