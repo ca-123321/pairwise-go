@@ -13,12 +13,16 @@ Currently uses package hexmaker to create hextiles based on generated PPs.
 For instance, `go run main.go -order=7 -show=true` to display the projective
 plane order 7. 
 
+`go run main.go -help` for options.
+
 ```
 Usage:
   -color (default true)
-      Print in color, or if false, black and white with stroked hexagon outline
+    Print in color, or if false, black and white with stroked hexagon outline
   -format (default false)
-     Format with commas for python/etc
+    Format with commas for python/etc
+  -hexdeck
+    Send the PP to hexmaker and make a set of images (default true)
   -order int (default 5)
       Order of the projective plane (default 3)
   -show (default false)
@@ -53,7 +57,9 @@ equivalent fractions on each. Lucky gift from the universe, that there are 31
 - generalize geometries and alignment
 - figure out how to integrate a solver so as to not leave Go, or have the
   solver (python) write a file and have pairwise read the file
-- Check for deck/ subdirectory before trying to write card images to it, give
-  error or attempt to create the directory
+- ~~Check for deck/ subdirectory before trying to write card images to it, give
+  error or attempt to create the directory~~
 - Add a sheet option for tiling the hexagons for easy printing and cutting
   prototypes
+- Wrap it all in a shell script until a native Go solver is used
+- - Give that wrapper an ability to take in a textfile of parameters

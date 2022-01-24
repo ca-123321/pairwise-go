@@ -17,6 +17,7 @@ func main() {
   show := flag.Bool("show", false, "Displays to stdout")
   color := flag.Bool("color", true, "Render in color")
   solver := flag.Bool("solver", false, "Use the solver to ensure every element is in exactly one column")
+  hexDeck := flag.Bool("hexdeck", true, "Send the PP to hexmaker and make a set of images")
 
   // TODO: fix shuffle
   flag.Parse()
@@ -29,8 +30,10 @@ func main() {
   if *show {
     display(p, *format)
   }
-  // TODO: Integrate solver at this point to get one elem/column
-  hexmaker.MakeHexagon(p, *color)
+  
+  if *hexDeck {
+    hexmaker.MakeHexagon(p, *color)
+  }
 }
 
 // puts commas between values and arrays for using in python/etc
