@@ -1,5 +1,6 @@
 *.swp
 *.png
 *.json
-/deck/*
+deck/*
 main
+solver/solver_test.py
