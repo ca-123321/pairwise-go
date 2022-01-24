@@ -11,10 +11,13 @@ import (
 )
 
 func main() {
+  // Go inserts some defaults for -help but only in some cases. 
+  // TODO: Weird, look into, but not too hard. Only true-valued bools seem to
+  // be automatically given a default.
   order := flag.Int("order", 5, "Order of the projective plane")
-  format := flag.Bool("format", false, "Format with commas for python/etc")
-  shuffle := flag.Bool("shuffle", false, "Permutes cards randomly, use with fracmaker")
-  show := flag.Bool("show", false, "Displays to stdout")
+  format := flag.Bool("format", false, "Format with commas for python/etc (default false)")
+  shuffle := flag.Bool("shuffle", false, "Permutes cards randomly, use with fracmaker (default false)")
+  show := flag.Bool("show", false, "Displays to stdout (default false)")
   color := flag.Bool("color", true, "Render in color")
   solver := flag.Bool("solver", false, "Use the solver to ensure every element is in exactly one column")
   hexDeck := flag.Bool("hexdeck", true, "Send the PP to hexmaker and make a set of images")
