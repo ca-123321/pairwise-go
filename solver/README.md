@@ -7,11 +7,13 @@ that every element appears in a column exactly once.
 
 ## Notes
 
-Uncomment `Enumerate all results` and wait for 3 billion years.
+Uncomment `Enumerate all results` and wait for 3 billion years. Enumerating the
+results isn't important, but it's an interesting problem for the future, that
+seems open. 
 
 ## Todo
 
-- Reduce the solution space by (order+1)! when enumerating all results, each time a solution is found by eliminating all possibilties of the form of shifting entire columns of the set. 
+- (very low on the list) Reduce the solution space by (order+1)! when enumerating all results, each time a solution is found by eliminating all possibilties of the form of shifting entire columns of the set. 
 - Move to a Go setting to avoid writing and reading
 - In the meantime, if the `solver` flag is `true`:
 - - PPmaker should output to a text file
