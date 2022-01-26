@@ -30,5 +30,5 @@ seems open.
 
 ## Credits
 
-thanks to a random redditor for this, and also to the googles, I wrote almost
+thanks to rope321 on reddit, and also to the googles, I wrote almost
 none of it
