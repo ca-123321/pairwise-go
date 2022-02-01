@@ -46,10 +46,17 @@ def main():
             column.append(cells[j][i])
         model.AddAllDifferent(column)
 
+    for i, row in enumerate(cells):
+        if i == N+1:
+            for j in range(N+1):
+                model.Add(row[j] == j+1)
+        else:
+            model.AddAllDifferent(row)
+
     # Solve the model
     solver = cp_model.CpSolver()
     solution_printer = CellsSolutionPrinter(cells)
-    #solver.parameters.enumerate_all_solutions = True
+    solver.parameters.enumerate_all_solutions = True
     solver.Solve(model, solution_printer)
 
     # Statistics

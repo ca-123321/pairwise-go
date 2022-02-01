@@ -11,9 +11,12 @@ Uncomment `Enumerate all results` and wait for 3 billion years. Enumerating the
 results isn't important, but it's an interesting problem for the future, that
 seems open. 
 
+- Successfully reduced problem space by the (order+1)! solutions which are
+just column permutations of the whole set of arrays
+
 ## Todo
 
-- (very low on the list) Reduce the solution space by (order+1)! when enumerating all results, each time a solution is found by eliminating all possibilties of the form of shifting entire columns of the set. 
+- (very low on the list) Reduce the solution space by (order+1)! when enumerating all results, each time a solution is found by eliminating all possibilties of the form of shifting entire columns of the set.  ( D O N E )
 - Move to a Go setting to avoid writing and reading
 - In the meantime, if the `solver` flag is `true`:
 - - PPmaker should output to a text file
@@ -32,3 +35,10 @@ seems open.
 
 thanks to rope321 on reddit, and also to the googles, I wrote almost
 none of it
+
+thanks to the or-tools mailing group
+
+thanks to Mr Fred Rogers for teaching at a young age that doing your best is
+good enough
+
+thanks to YOU, just for being who you are.
