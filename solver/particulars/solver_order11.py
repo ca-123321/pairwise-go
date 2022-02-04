@@ -178,6 +178,14 @@ def main():
             column.append(cells[j][i])
         model.AddAllDifferent(column)
 
+    # Row order+2 (N+1) must be arranged [1, 2, ... N+1]
+    for i, row in enumerate(cells):
+        if i == N+1:
+            for j in range(N+1):
+                model.Add(row[j] == j+1)
+        else:
+            model.AddAllDifferent(row)
+
     # Solve the model
     solver = cp_model.CpSolver()
     solution_printer = CellsSolutionPrinter(cells)
