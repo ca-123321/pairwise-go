@@ -1,5 +1,6 @@
 from ortools.sat.python import cp_model
 import json
+import sys
 
 with open('PP.json') as a:
     arrays = json.load(a)
@@ -57,7 +58,12 @@ def main():
     # Solve the model
     solver = cp_model.CpSolver()
     solution_printer = CellsSolutionPrinter(cells)
-    solver.parameters.enumerate_all_solutions = True
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'enum':
+            solver.parameters.enumerate_all_solutions = True
+        else:
+            solver.parameters.enumerate_all_solutions = False 
+
     solver.Solve(model, solution_printer)
 
     # Statistics
