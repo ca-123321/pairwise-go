@@ -1,6 +1,7 @@
 *.swp
 *.png
 *.json
+*.bak
 deck/*
 main
 solver/solver_test.py
