@@ -29,11 +29,12 @@ func main() {
   // TODO: fix shuffle
   flag.Parse()
 
+	// Creates the projective plane
+	p := PPmaker.MakePP(*order, *shuffle)
+
   if *solver {
     fmt.Println("The solver isn't implemented yet")
   }
-	// Creates the projective plane
-	p := PPmaker.MakePP(*order, *shuffle)
 
   if *makejson {
     file, _ := json.Marshal(p)
@@ -45,12 +46,14 @@ func main() {
   if *show {
     display(p, *format)
   }
-  
+
   if *hexDeck {
     hexmaker.MakeHexagon(p, *color)
   }
 }
 
+// TODO: This isn't necessary anymore since python reads the json
+// delete after some thinking to be sure
 // puts commas between values and arrays for using in python/etc
 func display(deck [][]int, format bool) {
 	if format {

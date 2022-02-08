@@ -95,6 +95,6 @@ for j := 0; j < 31; j++ {
   }
   filename := fmt.Sprintf("deck/hex%d.png", j+1)
   dc.SavePNG(filename)
-}
+  }
 }
 

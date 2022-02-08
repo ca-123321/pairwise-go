@@ -5,6 +5,8 @@
 This takes in a hard-coded set of arrays (`/particulars/solver_order3.py` etc) or uses
 PP.json if created by `../main.go`, and permutes them such that every element appears in a column exactly once.
 
+Then it outputs `arrangedPP.json` for further use, as well as prints the solution. We can also enumerate all possible solutions (see below)
+
 ## Usage
 
 `python3 solver.py` will give one solution of the PP.json
@@ -12,7 +14,8 @@ PP.json if created by `../main.go`, and permutes them such that every element ap
 Note: Sometimes this will reprint the single solution multiple times. Not sure
 why (TODO), but it's not a problem at the moment.
 
-`python3 solver.py enum` will enumerate all solutions of the PP.json
+`python3 solver.py enum` will enumerate all solutions of the PP.json to stdout,
+but will still generate a single `arrangedPP.json` of the last found solution.
 
 ## Notes
 
