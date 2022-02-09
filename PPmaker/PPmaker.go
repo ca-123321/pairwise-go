@@ -2,6 +2,10 @@
 package PPmaker
 
 // import "math/rand" // used for shuffling
+import (
+  "encoding/json"
+  "io/ioutil"
+)
 
 // Takes (power of prime TODO: check & error) order n, returns PP: n^2+n+1 arrays of n+1
 func MakePP(order int, shuffle bool) [][]int {
@@ -17,16 +21,25 @@ func MakePP(order int, shuffle bool) [][]int {
 		}
 		p = append(p, card)
 	}
+  // write json - needed for arranging by the solver
+  file, _ := json.Marshal(p)
+  _ = ioutil.WriteFile("PPmaker/PP.json", file, 0644)
+
+  // return after arranging
+  // TODO: implement arrangements
 	return ArrangePP(p, "")
 }
 
 func ArrangePP(p [][]int, arrangement string) [][]int {
   switch {
+  // shuffles rows of p randomly
   case arrangement == "shuffle":
-    return p // this should shuffle
+    return p 
+  // returns p arranged by the python solver, one elem/col
   case arrangement == "solved":
-    return p // this should return one elem/col using the python solver
+    return p 
+  // no arrangement, just return it
   default:
-    return p // no arrangement, just return it
+    return p 
   }
 }
