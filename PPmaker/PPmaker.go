@@ -7,10 +7,11 @@ import (
   "io/ioutil"
   "os/exec"
   "fmt"
+  "math/rand"
 )
 
 // Takes (power of prime TODO: check & error) order n, returns PP: n^2+n+1 arrays of n+1
-func MakePP(order int, shuffle bool, arrange string) [][]int {
+func MakePP(order int, arrange string) [][]int {
 	p := [][]int{}
 	coords := HomogCoords(order)
 
@@ -29,15 +30,18 @@ func MakePP(order int, shuffle bool, arrange string) [][]int {
   _ = ioutil.WriteFile("PPmaker/PP.json", file, 0644)
 
   // Return after arranging
-	return ArrangePP(p, arrange)
+  p = ArrangePP(p, arrange, order)
+	return p
 }
 
-func ArrangePP(p [][]int, arrangement string) [][]int {
+func ArrangePP(p [][]int, arrangement string, order int) [][]int {
   switch {
+
   // Shuffles rows of p randomly
-  // TODO: Fix shuffle
   case arrangement == "shuffle":
-    fmt.Println("Shuffling! -- not really though")
+    for _, row := range p {
+      rand.Shuffle(len(row), func(j, k int) { row[j], row[k] = row[k], row[j] })
+    }
     return p
 
   // Returns p arranged by the python solver, one elem/col

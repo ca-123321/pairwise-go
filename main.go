@@ -15,17 +15,15 @@ func main() {
   // Flags
   // TODO: group arrangement flags: Shuffle, Solver, Default
   // TODO: Maybe move all the flags and checks out of main or something cleaner, a struct or something
-  // TODO: fix shuffle
   order := flag.Int("order", 5, "Order of the projective plane")
-  shuffle := flag.Bool("shuffle", false, "Permutes elements of the rows randomly")
   show := flag.Bool("show", false, "Displays to stdout (default false)")
   color := flag.Bool("color", false, "Render in color")
   hexDeck := flag.Bool("hexdeck", false, "Send the PP to hexmaker and make a set of images")
-  arrange := flag.String("arrange", "", "'Shuffle', 'Solved', or default ''")
+  arrange := flag.String("arrange", "", "'Shuffle', 'Solve', or default ''")
   flag.Parse()
 
 	// Creates the projective plane
-	p := PPmaker.MakePP(*order, *shuffle, *arrange)
+	p := PPmaker.MakePP(*order, *arrange)
 
   if *show {
      for i := 0; i < len(p); i++ {
