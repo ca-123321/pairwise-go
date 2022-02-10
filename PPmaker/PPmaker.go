@@ -5,10 +5,12 @@ package PPmaker
 import (
   "encoding/json"
   "io/ioutil"
+  "os/exec"
+  "fmt"
 )
 
 // Takes (power of prime TODO: check & error) order n, returns PP: n^2+n+1 arrays of n+1
-func MakePP(order int, shuffle bool) [][]int {
+func MakePP(order int, shuffle bool, arrange string) [][]int {
 	p := [][]int{}
 	coords := HomogCoords(order)
 
@@ -21,25 +23,38 @@ func MakePP(order int, shuffle bool) [][]int {
 		}
 		p = append(p, card)
 	}
-  // write json - needed for arranging by the solver
+  // Write json - needed for arranging by the solver
+  // just do it every time because it's cheap -- could move it out later
   file, _ := json.Marshal(p)
   _ = ioutil.WriteFile("PPmaker/PP.json", file, 0644)
 
-  // return after arranging
-  // TODO: implement arrangements
-	return ArrangePP(p, "")
+  // Return after arranging
+	return ArrangePP(p, arrange)
 }
 
 func ArrangePP(p [][]int, arrangement string) [][]int {
   switch {
-  // shuffles rows of p randomly
+  // Shuffles rows of p randomly
   case arrangement == "shuffle":
-    return p 
-  // returns p arranged by the python solver, one elem/col
+    return p
+
+  // Returns p arranged by the python solver, one elem/col
+  // TODO: Broken currently, fix!
   case arrangement == "solved":
-    return p 
-  // no arrangement, just return it
+    // run solver.py
+    // read PP.json, output arrangedPP.json
+    cmd := exec.Command("PPmaker/solver.py")
+    out, err := cmd.CombinedOutput()
+    if err != nil {
+          fmt.Println(err)
+    }
+      fmt.Println(string(out))
+
+    // after the above works, should read the json then return p
+    return p
+
+  // No arrangement, just return it
   default:
-    return p 
+    return p
   }
 }
