@@ -30,11 +30,11 @@ func MakePP(order int, arrange string) [][]int {
   _ = ioutil.WriteFile("PPmaker/PP.json", file, 0644)
 
   // Return after arranging
-  p = ArrangePP(p, arrange, order)
+  p = ArrangePP(p, arrange)
 	return p
 }
 
-func ArrangePP(p [][]int, arrangement string, order int) [][]int {
+func ArrangePP(p [][]int, arrangement string) [][]int {
   switch {
 
   // Shuffles rows of p randomly
