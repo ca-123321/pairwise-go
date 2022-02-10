@@ -21,11 +21,11 @@ func main() {
   show := flag.Bool("show", false, "Displays to stdout (default false)")
   color := flag.Bool("color", false, "Render in color")
   hexDeck := flag.Bool("hexdeck", false, "Send the PP to hexmaker and make a set of images")
+  arrange := flag.String("arrange", "", "'Shuffle', 'Solved', or default ''")
   flag.Parse()
 
 	// Creates the projective plane
-  arrange := "" // TODO: take from flags
-	p := PPmaker.MakePP(*order, *shuffle, arrange)
+	p := PPmaker.MakePP(*order, *shuffle, *arrange)
 
   if *show {
      for i := 0; i < len(p); i++ {

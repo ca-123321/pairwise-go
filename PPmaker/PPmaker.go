@@ -35,12 +35,14 @@ func MakePP(order int, shuffle bool, arrange string) [][]int {
 func ArrangePP(p [][]int, arrangement string) [][]int {
   switch {
   // Shuffles rows of p randomly
+  // TODO: Fix shuffle
   case arrangement == "shuffle":
+    fmt.Println("Shuffling! -- not really though")
     return p
 
   // Returns p arranged by the python solver, one elem/col
   // TODO: Broken currently, fix!
-  case arrangement == "solved":
+  case arrangement == "solve":
     // run solver.py
     // read PP.json, output arrangedPP.json
     cmd := exec.Command("PPmaker/solver.py")
