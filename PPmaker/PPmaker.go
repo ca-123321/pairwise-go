@@ -5,7 +5,7 @@ package PPmaker
 import (
   "encoding/json"
   "io/ioutil"
-  "os/exec"
+  //"os/exec"
   "fmt"
   "math/rand"
 )
@@ -49,12 +49,7 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
   case arrangement == "solve":
     // run solver.py
     // read PP.json, output arrangedPP.json
-    cmd := exec.Command("PPmaker/solver.py")
-    out, err := cmd.CombinedOutput()
-    if err != nil {
-          fmt.Println(err)
-    }
-      fmt.Println(string(out))
+		fmt.Println("Calling solver is currently broken")
 
     // after the above works, should read the json then return p
     return p
