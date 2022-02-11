@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
+
 from ortools.sat.python import cp_model
 import json
 import sys
 
-with open('PP.json') as a:
+with open('PPmaker/PP.json') as a:
     arrays = json.load(a)
 
 N = len(arrays[0])-1
@@ -21,7 +23,7 @@ class CellsSolutionPrinter(cp_model.CpSolverSolutionCallback):
             print([self.Value(cell) for cell in row])
             solutionset.append([self.Value(cell) for cell in row])
         # export the solved set to json
-        with open('arrangedPP.json', 'w') as f:
+        with open('PPmaker/arrangedPP.json', 'w') as f:
             json.dump(solutionset, f)
         print()
 

@@ -5,7 +5,8 @@ package PPmaker
 import (
   "encoding/json"
   "io/ioutil"
-  //"os/exec"
+  "os"
+  "os/exec"
   "fmt"
   "math/rand"
 )
@@ -49,9 +50,24 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
   case arrangement == "solve":
     // run solver.py
     // read PP.json, output arrangedPP.json
-		fmt.Println("Calling solver is currently broken")
-
+    cmd := exec.Command("PPmaker/solver.py")
+    _, err := cmd.CombinedOutput()
+    if err != nil {
+      fmt.Println(err)
+    }
     // after the above works, should read the json then return p
+    tidy, err := os.Open("PPmaker/arrangedPP.json")
+    if err != nil {
+      fmt.Println(err)
+    }
+    fmt.Println("Successfully opened arrangedPP.json")
+    // defer closing so we can parse it later (necessary?)
+    defer tidy.Close()
+
+    // read as a byte array
+    byteValue, _ := ioutil.ReadAll(tidy)
+
+    json.Unmarshal(byteValue, &p)
     return p
 
   // No arrangement, just return it
