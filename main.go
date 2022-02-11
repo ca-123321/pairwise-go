@@ -22,7 +22,7 @@ func main() {
   arrange := flag.String("arrange", "", "'Shuffle', 'Solve', or default ''")
   flag.Parse()
 
-	// Creates the projective plane
+	// Create and arrange the projective plane
 	p := PPmaker.MakePP(*order, *arrange)
 
   if *show {

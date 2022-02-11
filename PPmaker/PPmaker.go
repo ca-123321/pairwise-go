@@ -46,7 +46,6 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
     return p
 
   // Returns p arranged by the python solver, one elem/col
-  // TODO: Broken currently, fix!
   case arrangement == "solve":
     // run solver.py
     // read PP.json, output arrangedPP.json
@@ -55,18 +54,16 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
     if err != nil {
       fmt.Println(err)
     }
-    // after the above works, should read the json then return p
+    // read the solved json provided by the solver
     tidy, err := os.Open("PPmaker/arrangedPP.json")
     if err != nil {
       fmt.Println(err)
     }
-    fmt.Println("Successfully opened arrangedPP.json")
     // defer closing so we can parse it later (necessary?)
     defer tidy.Close()
 
     // read as a byte array
     byteValue, _ := ioutil.ReadAll(tidy)
-
     json.Unmarshal(byteValue, &p)
     return p
 
