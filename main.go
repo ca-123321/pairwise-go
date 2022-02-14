@@ -15,7 +15,7 @@ func main() {
   // Flags
   // TODO: group arrangement flags: Shuffle, Solver, Default
   // TODO: Maybe move all the flags and checks out of main or something cleaner, a struct or something
-  order := flag.Int("order", 5, "Order of the projective plane")
+  order := flag.Int("order", 2, "Order of the projective plane")
   show := flag.Bool("show", false, "Displays to stdout (default false)")
   color := flag.Bool("color", false, "Render in color")
   hexDeck := flag.Bool("hexdeck", false, "Send the PP to hexmaker and make a set of images")
