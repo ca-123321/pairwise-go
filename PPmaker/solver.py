@@ -59,9 +59,9 @@ def main():
 
     # Row order+2 (N+1) must be arranged [1, 2, ... N+1]
     for i, row in enumerate(cells):
-        if i == N+1:
+        if i == 0:
             for j in range(N+1):
-                model.Add(row[j] == j+1)
+                model.Add(row[j] == 2 + j*N)
         else:
             model.AddAllDifferent(row)
 
