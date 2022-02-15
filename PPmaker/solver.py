@@ -57,7 +57,7 @@ def main():
             column.append(cells[j][i])
         model.AddAllDifferent(column)
 
-    # Row order+2 (N+1) must be arranged [1, 2, ... N+1]
+    # Arrange first row in increasing order
     for i, row in enumerate(cells):
         if i == 0:
             for j in range(N+1):
