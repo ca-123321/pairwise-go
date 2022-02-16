@@ -19,7 +19,7 @@ func main() {
   show := flag.Bool("show", false, "Displays to stdout (default false)")
   color := flag.Bool("color", false, "Render in color")
   hexDeck := flag.Bool("hexdeck", false, "Send the PP to hexmaker and make a set of images")
-  arrange := flag.String("arrange", "", "'Shuffle', 'Solve', or default ''")
+  arrange := flag.String("arrange", "", "'shuffle', 'solve', 'test', or default ''")
   flag.Parse()
 
 	// Create and arrange the projective plane

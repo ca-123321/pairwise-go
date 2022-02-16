@@ -36,23 +36,31 @@ func MakePP(order int, arrange string) [][]int {
 }
 
 func ArrangePP(p [][]int, arrangement string) [][]int {
-  switch {
+  switch arrangement {
 
   // Shuffles rows of p randomly
-  case arrangement == "shuffle":
+  case "shuffle":
     for _, row := range p {
       rand.Shuffle(len(row), func(j, k int) { row[j], row[k] = row[k], row[j] })
     }
     return p
 
   // Returns p arranged by the python solver, one elem/col
-  case arrangement == "solve":
+  case "solve", "test":
     // run solver.py
     // read PP.json, output arrangedPP.json
-    cmd := exec.Command("PPmaker/solver.py")
-    _, err := cmd.CombinedOutput()
-    if err != nil {
-      fmt.Println(err)
+    if arrangement == "test" {
+      cmd := exec.Command("PPmaker/solver_test.py")
+      _, err := cmd.CombinedOutput()
+      if err != nil {
+        fmt.Println(err)
+      }
+    } else {
+      cmd := exec.Command("PPmaker/solver.py")
+      _, err := cmd.CombinedOutput()
+      if err != nil {
+        fmt.Println(err)
+      }
     }
     // read the solved json provided by the solver
     tidy, err := os.Open("PPmaker/arrangedPP.json")
