@@ -53,13 +53,15 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
       cmd := exec.Command("PPmaker/solver_test.py")
       _, err := cmd.CombinedOutput()
       if err != nil {
-        fmt.Println(err)
+        fmt.Fprintf(os.Stderr, "running test solver: %v\n", err)
+        os.Exit(1)
       }
     } else {
       cmd := exec.Command("PPmaker/solver.py")
       _, err := cmd.CombinedOutput()
       if err != nil {
-        fmt.Println(err)
+        fmt.Fprintf(os.Stderr, "running solver: %v\n", err)
+        os.Exit(1)
       }
     }
     // read the solved json provided by the solver
