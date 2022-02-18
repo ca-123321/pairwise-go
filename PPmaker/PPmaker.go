@@ -9,6 +9,7 @@ import (
   "os/exec"
   "fmt"
   "math/rand"
+  "time"
 )
 
 // Takes (power of prime TODO: check & error) order n, returns PP: n^2+n+1 arrays of n+1
@@ -40,6 +41,7 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
 
   // Shuffles rows of p randomly
   case "shuffle":
+    rand.Seed(time.Now().UnixNano())
     for _, row := range p {
       rand.Shuffle(len(row), func(j, k int) { row[j], row[k] = row[k], row[j] })
     }
