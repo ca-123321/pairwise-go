@@ -69,7 +69,8 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
     // read the solved json provided by the solver
     tidy, err := os.Open("PPmaker/arrangedPP.json")
     if err != nil {
-      fmt.Println(err)
+      fmt.Fprintf(os.Stderr, "Opening arrangedPP.json: %v\n", err)
+      os.Exit(1)
     }
     // defer closing so we can parse it later (necessary?)
     defer tidy.Close()
