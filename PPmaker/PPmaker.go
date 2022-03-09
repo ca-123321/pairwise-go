@@ -63,6 +63,7 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
       _, err := cmd.CombinedOutput()
       if err != nil {
         fmt.Fprintf(os.Stderr, "running solver: %v\n", err)
+        CleanUp()
         os.Exit(1)
       }
     }
@@ -70,6 +71,7 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
     tidy, err := os.Open("PPmaker/arrangedPP.json")
     if err != nil {
       fmt.Fprintf(os.Stderr, "Opening arrangedPP.json: %v\n", err)
+      CleanUp()
       os.Exit(1)
     }
     // defer closing so we can parse it later (necessary?)
@@ -84,4 +86,10 @@ func ArrangePP(p [][]int, arrangement string) [][]int {
   default:
     return p
   }
+}
+
+func CleanUp() {
+  fmt.Println("Removing generated json...")
+  // remove the generated json if something goes wrong
+  // use error, "nothing to clean up"
 }
