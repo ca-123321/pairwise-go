@@ -10,6 +10,7 @@ import (
   "fmt"
   "math/rand"
   "time"
+  "sort"
 )
 
 // Takes (power of prime TODO: check & error) order n, returns PP: n^2+n+1 arrays of n+1
@@ -38,6 +39,13 @@ func MakePP(order int, arrange string) [][]int {
 
 func ArrangePP(p [][]int, arrangement string) [][]int {
   switch arrangement {
+
+  // Orders the elements lowest to highest
+  case "order":
+    for i := 0; i < len(p); i++ {
+      sort.Ints(p[i])
+    }
+    return p
 
   // Shuffles rows of p randomly
   case "shuffle":
