@@ -11,24 +11,24 @@ Currently uses package hexmaker to create hextiles based on generated PPs.
 `go run main.go -flag=value`
 
 For instance: 
-`go run main.go -order=7 -show=true` to display the projective plane order 7.
+`go run main.go -order=7 -show=array` to display the projective plane order 7.
 
-`go run main.go -order=2 -show=true -arrange=solve` to run the solver and display the projective plane order 2, "solved" (ie every element appears in exactly one column)
+`go run main.go -order=3 -show=text -arrange=solve` to run the solver and display the projective plane order 3, "solved" (ie every element appears in exactly one column using OR-Tools)
 
 `go run main.go -help` for options.
 
 ```
 Usage:
   -arrange string
-    Shuffle, Solve, or default
-  -hexdeck
-    Send the PP to hexmaker and make a set of images
+      'shuffle', 'solve', 'test', 'order', or default ''
   -color
-    Print in color, default: black and white with stroked hexagon outline
-  -order 
-    Order of the projective plane (default 5)
-  -show
-    Displays to stdout
+      Render in color
+  -hexdeck
+      Send the PP to hexmaker and make a set of images
+  -order int
+      Order of the projective plane (default 2)
+  -show string
+      'text', or 'array', (default no output)
 ```
 
 The (commented-out) texmaker part both requires an external library, and seeks
