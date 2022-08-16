@@ -37,7 +37,7 @@ uncomment and try to run the texmaker portion.
 
 ## Notes
 
-https://www.youtube.com/watch?v=V_wQ7ByCSgw
+https://www.youtube.com/watch?v=k472YAVzoGU
 
 ## Fracmaker 
 
